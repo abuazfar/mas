@@ -1,0 +1,25 @@
+-- FTP direct
+define('FS_METHOD','direct');
+
+-- Force https
+: .htaccess
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://www.domainanda.com/$1 [R,L]
+
+-7.3966398826681745, 110.510802
+
+
+<div style="width:300px;border-left: 1px solid gray;padding-left: 10px">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15826.435737221653!2d110.510802!3d-7.39764!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7d43c2e8275a6797!2sPesantren%20Islam%20Al%20Irsyad%20Tengaran!5e0!3m2!1sid!2sid!4v1614305627932!5m2!1sid!2sid" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+
+Hubungi Kami
+
+MAS Pesantren Islam Al-Irsyad Tengaran
+
+Jalan Raya Solo - Semarang Km. 45, Ds. Butuh
+Kec. Tengaran, Kab. Semarang, 50775.
+
+Telp. (0298) 321658
+E-mail : ma@pesantrenalirsyad.org

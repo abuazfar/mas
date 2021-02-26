@@ -1,0 +1,56 @@
+server {
+        #listen 80;
+        #listen [::]:80;
+        listen 443 ssl;
+        ssl on;
+        ssl_certificate /etc/nginx/ssl/belajar2.crt;
+        ssl_certificate_key /etc/nginx/ssl/belajar2.key;
+
+        root /var/www/html/mas;
+        index index.php index.html;
+        server_name mas.pesantrenalirsyad.org;
+        
+        location / {
+           try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        
+        location ^~ /santri/ {
+           alias /var/www/html/mas/santripages/public/;
+           try_files $uri $uri/ @santri;
+           #try_files $uri $uri/ /santripages/public/index.php?q=$uri&$args;
+          
+           location ~ \.php {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+                fastcgi_param SCRIPT_FILENAME /var/www/html/mas/santripages/public/index.php;
+               }
+           }
+
+           location @santri {
+              rewrite /santri/(.*)$ /santri/index.php?/$1 last;
+           }
+
+
+        location ~ /\.ht {
+            deny all;
+        }
+        location ~ /\.env {
+            deny all;
+        }
+        location ~ /\.git {
+            deny all;
+        }
+
+
+        location ~ \.php$ {
+        try_files $uri /index.php =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+        }
+
+}
